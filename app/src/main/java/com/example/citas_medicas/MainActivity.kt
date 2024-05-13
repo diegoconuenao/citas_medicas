@@ -23,14 +23,28 @@ import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.citas_medicas.ui.theme.Citas_medicasTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val navController = rememberNavController()
+            NavHost(navController = navController, startDestination = "Login", builder = {
+                composable("Login"){
+                    LoginScreen(navController)
+                }
+                composable("Reservas"){
+                    Reservas(navController)
+                }
+
+            })
             //MyComponent()
-            LoginScreen()
+            //LoginScreen()
+            //Reservas()
         }
     }
 }
@@ -73,8 +87,12 @@ fun PreviewComponent(){
 
  */
 
+/*
 @Preview
 @Composable
 fun PreviewComponent(){
     LoginScreen()
+    Reservas()
 }
+
+*/
